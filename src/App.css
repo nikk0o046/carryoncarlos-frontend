@@ -1,12 +1,75 @@
 .app {
-  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
 }
 
-.search-input {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0.5em;
-  font-size: 1em; /* Adjust this to your preferred font size */
-  height: 4em; /* Adjust this to your preferred height */
+.app h1 {
+  text-align: center;
+  color: #444;
+  font-size: 2rem; /* adjust the size here */
 }
 
+.app h3 {
+  text-align: center;
+  color: #666;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.loading {
+  text-align: center;
+}
+
+.chat-message {
+  max-width: 70%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.chat-message.assistant {
+  color: #000;
+  background-color: #e6e6e6;
+  align-self: flex-start;
+}
+
+.chat-message.user {
+  background-color: #0084ff;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-window input {
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,.2);
+}
+
+.send-button {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 18px 0 18px 30px;
+  border-color: transparent transparent transparent #007BFF;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.message-input-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
