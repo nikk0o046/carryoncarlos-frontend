@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
+import Loading from './Loading';
 
 // ChatWindow component receives sendMessageFunction (which sends user's messages to the server) 
 // and messages (the conversation history) as props from its parent (App)
-const ChatWindow = ({ sendMessageFunction, messages }) => {
+const ChatWindow = ({ sendMessageFunction, messages, isLoading }) => {
   const [message, setMessage] = useState('') // The message state variable is used to keep track of the current message being typed by the user
   const messagesEndRef = useRef(null) // useRef is used to create a reference to the div that will be used to auto-scroll the chat window
 
@@ -31,12 +32,20 @@ const ChatWindow = ({ sendMessageFunction, messages }) => {
 
   return (
     <div className="chat-window">
+       {isLoading && <Loading />}
       <div className="chat-messages">
-        {messages.map((message, index) => (
-          <div key={index} className={`chat-message ${message.role}`}>
-            <span>{message.content}</span>
-          </div>
-        ))}
+        {/* Check if a message has a links property, and if so, map over it to generate clickable links. */}
+      {messages.map((message, index) => (
+        <div key={index} className={`chat-message ${message.role}`}>
+          <span>{message.content}</span>
+          {message.role === 'assistant' && message.links && message.links.map((flight, idx) => (
+            <div key={idx}>
+              <span>{flight.content}</span> 
+              <a href={flight.link} target="_blank" rel="noopener noreferrer">Book here</a>
+            </div>
+          ))}
+        </div>
+      ))}
         <div ref={messagesEndRef} />
       </div>
       <div className="message-input-area">
