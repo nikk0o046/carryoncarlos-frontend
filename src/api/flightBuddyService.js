@@ -24,7 +24,7 @@ export async function sendFlightRequest(updatedMessages) {
       user_request: parsedArguments.summary_info
     };
   
-    const response = await fetch(`https://flight-buddy-service-ou44r5rafq-lz.a.run.app/search_flights`, {
+    const response = await fetch(`http://localhost:8080/search_flights`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

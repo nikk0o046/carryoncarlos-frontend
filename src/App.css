@@ -9,7 +9,7 @@
 
 .app h1 {
   text-align: center;
-  color: #444;
+  color: #c3d4e0;
   font-size: 2rem; /* adjust the size here */
 }
 
@@ -79,4 +79,35 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+
+.loading {
+  text-align: left;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.dot-flashing {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background-color: #ccc;
+  box-shadow: 1.2rem 0 0 #ccc, 2.4rem 0 0 #ccc;
+  animation: dot-flashing 1s infinite linear;
+}
+
+@keyframes dot-flashing {
+  0% { box-shadow: 1.2rem 0 0 #ccc, 2.4rem 0 0 #ccc; }
+  50% { box-shadow: 1.2rem 0 0 transparent, 2.4rem 0 0 transparent; }
+  100% { box-shadow: 1.2rem 0 0 #ccc, 2.4rem 0 0 #ccc; }
+}
+
+.carlos-image {
+  max-width: 100%;  // adjust as needed
+  height: auto;  // adjust as needed
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
 }

@@ -3,9 +3,10 @@ import React from 'react';
 const Loading = () => {
   return (
     <div className="loading">
-      Carry-on Carlos is responding...
+      <div className="dot-flashing"></div>
     </div>
   );
 };
 
 export default Loading;
+

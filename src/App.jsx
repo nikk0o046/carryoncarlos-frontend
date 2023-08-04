@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import ChatWindow from './components/ChatWindow'
 import { sendFlightRequest, handleFunctionCall } from './api/flightBuddyService'
+import CarlosImage from './Carry-on_Carlos.png';
 
 function App() {
   const [messages, setMessages] = useState([
@@ -34,7 +35,7 @@ function App() {
         console.log(`Starting to handle function call`);
         const predefinedMessage = {
           role: 'assistant',
-          content: "I've got all the info I need, wait a minute and I'll provide you the flights!",
+          content: "Alright, buckle up! I'm looking through over 800 airlines for you now. In the meantime, why don't you grab a cup of coffee or do some stretches, because let me tell you, there's nothing worse than cramped legs on a flight! Meet you back here in just a jiffy."
         };
         setMessages(oldMessages => [...oldMessages, predefinedMessage])
 
@@ -42,8 +43,21 @@ function App() {
         console.log(`Received function response: ${JSON.stringify(functionResponse)}`);
 
         if (functionResponse.length > 0) {
-          const flights = functionResponse.map(flight => `Flight number ${flight.flight_number} from ${flight.from} to ${flight.to} costs ${flight.price.value} ${flight.price.currency} with an average duration of ${flight.average_duration.hours} hours and ${flight.average_duration.minutes} minutes. You can book it [here](${flight.booking_link}).`);
-          newAssistantMessage.content = "Here are some options I found for you:\n" + flights.join("\n");
+          // if flights were found, map each flight to an object with formatted data
+          const flights = functionResponse.map(flight => {
+            return {
+              flight_number: flight.flight_number,
+              from: flight.from,
+              to: flight.to,
+              cost: `${flight.price.value} ${flight.price.currency}`,
+              average_duration: `${flight.average_duration.hours} hours and ${flight.average_duration.minutes} minutes`,
+              booking_link: flight.booking_link,
+            };
+          });
+
+          newAssistantMessage.content = "Alright, mission accomplished! I've wrestled the databases and brought back the best flights just for you. Check them out below. Happy travels!";
+          newAssistantMessage.flights = flights;
+
         } else {
           newAssistantMessage.content = "I'm sorry, but I couldn't find any flights that match your criteria."; 
         }
@@ -61,10 +75,9 @@ function App() {
   return (
     <div className="app">
       <h1>🧳 Carry-on Carlos ✈️</h1>
-      <h3>Your personal flight search assistant</h3>
+      <img src={CarlosImage} alt="Carry-on Carlos" className="carlos-image"/>
       <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} isLoading={isLoading}/>
       {errorMsg && <div className="error">{errorMsg}</div>} 
-      {isLoading && <p className="loading">Carry-on Carlos is responding...</p>}
     </div>
   );
 }

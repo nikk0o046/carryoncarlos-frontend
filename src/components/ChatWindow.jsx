@@ -32,22 +32,22 @@ const ChatWindow = ({ sendMessageFunction, messages, isLoading }) => {
 
   return (
     <div className="chat-window">
-       {isLoading && <Loading />}
       <div className="chat-messages">
-        {/* Check if a message has a links property, and if so, map over it to generate clickable links. */}
       {messages.map((message, index) => (
         <div key={index} className={`chat-message ${message.role}`}>
           <span>{message.content}</span>
-          {message.role === 'assistant' && message.links && message.links.map((flight, idx) => (
+          {message.role === 'assistant' && message.flights && message.flights.map((flight, idx) => (
             <div key={idx}>
-              <span>{flight.content}</span> 
-              <a href={flight.link} target="_blank" rel="noopener noreferrer">Book here</a>
+              <br/>
+              <span>Flight number {flight.flight_number} from {flight.from} to {flight.to} costs {flight.cost} with an average duration of {flight.average_duration}. </span>
+              <a href={flight.booking_link} target="_blank" rel="noopener noreferrer">Book here</a>
             </div>
           ))}
         </div>
       ))}
-        <div ref={messagesEndRef} />
-      </div>
+      <div ref={messagesEndRef} />
+    </div>
+      {isLoading && <Loading />}
       <div className="message-input-area">
         <input type="text" value={message} onChange={handleInputChange} className="chat-input" />
         <div className="send-button" onClick={handleSendClick} />
