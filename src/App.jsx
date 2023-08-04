@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css' // Import the CSS file
 import ChatWindow from './components/ChatWindow'
 
+
 function App() {
   // First we initialize 'messages', 'isLoading' and 'errorMsg' states.
   const [messages, setMessages] = useState([
@@ -14,19 +15,30 @@ function App() {
   const [errorMsg, setErrorMsg] = useState(null)
 
   // Console log every times "messages" changes
-  useEffect(() => {
-    console.log(`Updated conversation history: ${JSON.stringify(messages)}`);
-  }, [messages]);
+  //useEffect(() => {
+   // console.log(`Updated conversation history: ${JSON.stringify(messages)}`);
+  //}, [messages]);
+
  
-  // This function is used to handle function calls from the assistant
+  // THIS FUNCTION HANDLES FUNCTION CALLS FROM THE ASSISTANT
   async function handleFunctionCall(functionCall) {
-    const { name, function_arguments } = functionCall; // The function call object will contain the name of the function and its arguments
+    const { arguments: functionArguments } = functionCall; // taking the value of the arguments property from the functionCall object and assigning it to a new variable functionArguments
+    console.log(`functionCall object: ${JSON.stringify(functionCall)}`);
+    console.log(`functionArguments: ${functionArguments}`);
+    console.log(`Type of functionArguments: ${typeof functionArguments}`);
+
+    const parsedArguments = JSON.parse(functionArguments); // functionArguments is actually a string due to OpenAI's response object
+    const requestBody = {
+        user_request: parsedArguments.summary_info
+    };
+
+    console.log("Request body:", requestBody);
     const response = await fetch(`https://flight-buddy-service-ou44r5rafq-lz.a.run.app/search_flights`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(function_arguments)
+      body: JSON.stringify(requestBody)
     });
   
     if (!response.ok) {
@@ -36,8 +48,9 @@ function App() {
     const data = await response.json(); // Parse the JSON response body
     return data;
   }
+
   
-  // This function is used to handle messages sent by the user
+  // THIS FUNCTION IS USED TO HANDLE MESSAGES SENT BY THE USER
   const handleSendMessage = async (newMessage) => {
     console.log(`Received new message: ${JSON.stringify(newMessage)}`); // Log the new message
     setLoading(true) // Add the new user message to the 'messages' state immediately
@@ -66,18 +79,22 @@ function App() {
 
       const data = await response.json() // Parse the JSON response body
       const newAssistantMessage = data.message; // Get the message field from the response
+
       
       if (newAssistantMessage.function_call) {
-      // If the assistant message includes a function call, send a predefined message to the user
-      const predefinedMessage = {
-        role: 'assistant',
-        content: "I've got all the info I need, wait a minute and I'll provide you the flights!",
-      };
-      setMessages(oldMessages => [...oldMessages, predefinedMessage])
+        console.log(`Starting to handle function call`);
+        // If the assistant message includes a function call, send a predefined message to the user
+        const predefinedMessage = {
+          role: 'assistant',
+          content: "I've got all the info I need, wait a minute and I'll provide you the flights!",
+        };
+        setMessages(oldMessages => [...oldMessages, predefinedMessage])
+          
         // Then handle the function call
-
         const functionResponse = await handleFunctionCall(newAssistantMessage.function_call);
-        //// We first check if the functionResponse array has any elements. If it's empty, it means no flights were found.
+        console.log(`received function response: ${JSON.stringify(functionResponse)}`);
+        
+        // We first check if the functionResponse array has any elements. If it's empty, it means no flights were found.
         if (functionResponse.length > 0) {
           // If we found flights, we transform each flight object into a readable string. We use map() to do this transformation for each flight in the functionResponse array.
           const flights = functionResponse.map(flight => {
@@ -92,11 +109,13 @@ function App() {
   
       setMessages(oldMessages => [...oldMessages, newAssistantMessage]) // Add the new message from the assistant to the 'messages' state
     } catch (error) {
-      setErrorMsg("Network error. Please try again later."); // Set a generic error message
+      console.error("An error occurred:", error);
+      setErrorMsg("Unexpected error. Please try again later."); // Generic error message to the user interface
     } finally {
       setLoading(false); // After the request is completed (either successfully or with an error), set 'isLoading' to false
     }
   }
+
 
   return (
     <div className="app">
@@ -104,7 +123,7 @@ function App() {
       <h3>Your personal flight search assistant</h3>
       <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} />
       {errorMsg && <div className="error">{errorMsg}</div>} 
-      {isLoading && <p className="loading">Carry-on Carlos is searching for flights...</p>}
+      {isLoading && <p className="loading">Carry-on Carlos is responding...</p>}
     </div>
   );
 

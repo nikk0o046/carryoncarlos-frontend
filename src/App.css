@@ -28,6 +28,13 @@
   text-align: center;
 }
 
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
 .chat-message {
   max-width: 70%;
   margin-bottom: 10px;
