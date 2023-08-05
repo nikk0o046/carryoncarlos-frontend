@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import ChatWindow from './components/ChatWindow'
 import { sendFlightRequest, handleFunctionCall } from './api/flightBuddyService'
-import CarlosImage from './Carry-on_Carlos.png';
+import CarlosImage from '../assets/Carry-on_Carlos.png';
 
 function App() {
   const [messages, setMessages] = useState([
