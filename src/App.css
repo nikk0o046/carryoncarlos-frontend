@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+.h1-breeserif {
+  font-family: 'Bree Serif', serif;
+  color: rgb(165, 193, 212);
+}
+
+@media screen and (max-width: 600px) {
+  .h1-breeserif {
+    font-size: 36px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .h1-breeserif {
+    font-size: 72px;
+  }
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -5,12 +24,6 @@
   justify-content: center;
   padding: 20px;
   font-family: 'Arial', sans-serif;
-}
-
-.app h1 {
-  text-align: center;
-  color: #c3d4e0;
-  font-size: 2rem; /* adjust the size here */
 }
 
 .app h3 {
@@ -64,11 +77,8 @@
 }
 
 .send-button {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 18px 0 18px 30px;
-  border-color: transparent transparent transparent #007BFF;
+  font-size: 24px;
+  color: #007BFF;
   cursor: pointer;
   margin-left: 10px;
   margin-top: 10px;
@@ -110,4 +120,14 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
+}
+
+.suggestion-item {
+  list-style-type: none; /* Remove bullet points */
+  padding: 10px;
+  cursor: pointer; /* Make it look clickable */
+  border: 1px solid #eee;
+  margin-top: -1px; /* This will make them stack nicely */
+  background-color: #3d3b3b;
+  transition: background-color 0.2s; /* Smooth transition for hover effect */
 }

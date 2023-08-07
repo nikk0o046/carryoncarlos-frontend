@@ -50,7 +50,7 @@ const ChatWindow = ({ sendMessageFunction, messages, isLoading }) => {
       {isLoading && <Loading />}
       <div className="message-input-area">
         <input type="text" value={message} onChange={handleInputChange} className="chat-input" />
-        <div className="send-button" onClick={handleSendClick} />
+        <i className="fas fa-paper-plane send-button" onClick={handleSendClick} />
       </div>
     </div>
   )

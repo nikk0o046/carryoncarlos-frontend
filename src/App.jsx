@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import ChatWindow from './components/ChatWindow'
 import { sendFlightRequest, handleFunctionCall } from './api/flightBuddyService'
-import CarlosImage from '../assets/Carry-on_Carlos.png';
+import AirportAutocomplete from './components/AirportAutocomplete';
+import CarlosImage from './assets/Carry-on_Carlos.png';
 
 function App() {
   const [messages, setMessages] = useState([
@@ -74,8 +75,9 @@ function App() {
 
   return (
     <div className="app">
-      <h1>🧳 Carry-on Carlos ✈️</h1>
+      <h1 className="h1-breeserif">🧳 Carry-on Carlos </h1>
       <img src={CarlosImage} alt="Carry-on Carlos" className="carlos-image"/>
+      <AirportAutocomplete />
       <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} isLoading={isLoading}/>
       {errorMsg && <div className="error">{errorMsg}</div>} 
     </div>
