@@ -65,4 +65,4 @@ ChatWindow.propTypes = {
   })).isRequired,
 }
 
-export default ChatWindow
+export default ChatWindow;

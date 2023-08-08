@@ -1,8 +1,8 @@
 import React from 'react';
 
-function CabinClassDropdown() {
+function CabinClassDropdown({ cabinClass, setCabinClass }) {
     return (
-        <select defaultValue="Economy" className='cabin-class-dropdown'>
+        <select value={cabinClass} onChange={(e) => setCabinClass(e.target.value)} className='cabin-class-dropdown'>
             <option value="Economy">Economy</option>
             <option value="PremiumEconomy">Premium Economy</option>
             <option value="BusinessClass">Business Class</option>

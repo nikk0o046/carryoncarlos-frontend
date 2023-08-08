@@ -17,10 +17,11 @@ export async function sendFlightRequest(updatedMessages) {
     return data;
   }
   
-  export async function handleFunctionCall(functionCall) {
+  export async function handleFunctionCall(functionCall, searchInput) {
     const { arguments: functionArguments } = functionCall;
     const parsedArguments = JSON.parse(functionArguments);
     const requestBody = {
+      ...searchInput, // Merge searchInput into the requestBody
       user_request: parsedArguments.summary_info
     };
   

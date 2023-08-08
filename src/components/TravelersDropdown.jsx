@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
-function TravelersDropdown() {
+function TravelersDropdown({ travelers, setTravelers }) {
+    const { adults, children, infants } = travelers;
     const [isTravelersPanelOpen, setTravelersPanelOpen] = useState(false);
-    const [adultCount, setAdultCount] = useState(1);
-    const [childCount, setChildCount] = useState(0);
-    const [infantCount, setInfantCount] = useState(0);
-    const totalTravelers = adultCount + childCount + infantCount;
-
+    
     const toggleTravelersPanel = () => {
         setTravelersPanelOpen(!isTravelersPanelOpen);
     };
@@ -14,27 +11,27 @@ function TravelersDropdown() {
     return (
         <div className="travelers-dropdown">
             <button onClick={toggleTravelersPanel}>
-                {totalTravelers} travelers
+                {adults + children + infants} travelers
             </button>
             {isTravelersPanelOpen && (
                 <div className="travelers-panel">
                     <div className="traveler-control">
                         <label>Adults</label>
-                        <button onClick={() => setAdultCount(adultCount - 1)} disabled={adultCount <= 1}>-</button>
-                        {adultCount}
-                        <button onClick={() => setAdultCount(adultCount + 1)}>+</button>
+                        <button onClick={() => setTravelers(prev => ({ ...prev, adults: prev.adults - 1 }))} disabled={adults <= 1}>-</button>
+                        {adults}
+                        <button onClick={() => setTravelers(prev => ({ ...prev, adults: prev.adults + 1 }))}>+</button>
                     </div>
                     <div className="traveler-control">
                         <label>Children</label>
-                        <button onClick={() => setChildCount(childCount - 1)} disabled={childCount <= 0}>-</button>
-                        {childCount}
-                        <button onClick={() => setChildCount(childCount + 1)}>+</button>
+                        <button onClick={() => setTravelers(prev => ({ ...prev, children: prev.children - 1 }))} disabled={children <= 0}>-</button>
+                        {children}
+                        <button onClick={() => setTravelers(prev => ({ ...prev, children: prev.children + 1 }))}>+</button>
                     </div>
                     <div className="traveler-control">
                         <label>Infants</label>
-                        <button onClick={() => setInfantCount(infantCount - 1)} disabled={infantCount <= 0}>-</button>
-                        {infantCount}
-                        <button onClick={() => setInfantCount(infantCount + 1)}>+</button>
+                        <button onClick={() => setTravelers(prev => ({ ...prev, infants: prev.infants - 1 }))} disabled={infants <= 0}>-</button>
+                        {infants}
+                        <button onClick={() => setTravelers(prev => ({ ...prev, infants: prev.infants + 1 }))}>+</button>
                     </div>
                 </div>
             )}

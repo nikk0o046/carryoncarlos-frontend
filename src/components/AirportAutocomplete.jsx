@@ -10,18 +10,17 @@ const debounce = (func, delay) => {
     };
 };
 
-export default function AirportAutocomplete(props) {
-    const [searchTerm, setSearchTerm] = useState('');
+export default function AirportAutocomplete({ searchTerm, setSearchTerm, setSelectedCityID }) {
     const [locations, setLocations] = useState([]);
     const [error, setError] = useState(null);
     const [isInputActive, setIsInputActive] = useState(true);
-    const [isTravelersPanelOpen, setTravelersPanelOpen] = useState(false);
 
     const handleLocationClick = (location) => {
         setSearchTerm(location.name); // Set the clicked location's name as the searchTerm
+        setSelectedCityID(location.id)
         setLocations([]); // Clear the suggestions list after a click
         setIsInputActive(false); // Deactivate the input field
-      };
+    };
 
     useEffect(() => {
         if (searchTerm) {
@@ -37,7 +36,7 @@ export default function AirportAutocomplete(props) {
         const params = new URLSearchParams({
             term: term,
             locale: 'en-US',
-            location_types: 'airport',
+            location_types: 'city',
             limit: 5
         });
 
@@ -81,5 +80,6 @@ export default function AirportAutocomplete(props) {
           </ul>
           {error && <p className="error-message">{error}</p>}
         </div>
-      );
+    );
 }
+

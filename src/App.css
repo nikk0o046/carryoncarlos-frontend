@@ -138,72 +138,45 @@
   overflow-y: hidden; 
   width: 100%;
   scrollbar-width: none;
-  align-items: stretch;
-  justify-content: flex-start;
-  margin-bottom: 10px;
 }
 
 .banner::-webkit-scrollbar {
   display: none;
 }
 
-.travelers-dropdown {
-    display: flex; /* Make this a flex container */
-    flex-direction: column; /* Stack child elements vertically */
-    align-items: center; /* Horizontally center child elements */
-    width: 200px;
-    margin-right: 10px;
-    margin-top: 2px;
-    box-sizing: border-box;
-    padding: 0;
-    font-size: 14px;
-}
-
-.traveler-control {
-  display: flex; /* Arrange label and buttons in a row */
-  justify-content: space-between; /* Add space between items */
-  width: 100%; /* Take full width */
-  padding: 5px 0; /* Add some vertical padding */
-}
-
-
-.traveler-control label,
-.traveler-control button {
-    margin: 0 5px; /* Add some spacing between text and buttons */
-}
-
 .airport-autocomplete {
-  flex: 0 0 50%;
-  box-sizing: content-box; 
-  padding: 0; 
-  margin-right: 10px; 
-  border: none;
-}
-
-.airport-autocomplete > div > input {
-  font-size: 12px !important;
-}
-
-.airport-autocomplete .suggestion-item {
-  font-size: 12px;
+  flex: 0 0 auto;
+  padding: 10px;
+  font-size: 14px; 
+  margin-right: 8px; 
+  width: 30%;
 }
 
 .airport-autocomplete input {
   font-size: 10px; 
-  padding: 10px; 
-  width: 100%;
-  box-sizing: border-box; 
+}
+
+.travelers-dropdown {
+  flex: 0 0 auto;
+  padding: 10px;
+  font-size: 14px; 
+  margin-right: 8px;
+  width: 40%;
+}
+
+.travelers-dropdown select {
+  font-size: 10px;
 }
 
 .cabin-class-dropdown {
-  width: 150px; 
+  flex: 0 0 auto;
+  padding: 10px;
+  font-size: 14px; 
+  margin-right: 8px;
+  width: 30%;
 }
 
-.cabin-class-dropdown select {
-  font-size: 12px; 
-  padding: 10px; 
-  width: 150px;
-  box-sizing: border-box;
-}
+
+
 
 

@@ -15,6 +15,7 @@ function App() {
   ]);
   const [isLoading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState(null)
+  const [searchInput, setSearchInput] = useState({});
 
   useEffect(() => {
    console.log(`Updated conversation history: ${JSON.stringify(messages)}`);
@@ -40,7 +41,7 @@ function App() {
         };
         setMessages(oldMessages => [...oldMessages, predefinedMessage])
 
-        const functionResponse = await handleFunctionCall(newAssistantMessage.function_call);
+        const functionResponse = await handleFunctionCall(newAssistantMessage.function_call, searchInput);
         console.log(`Received function response: ${JSON.stringify(functionResponse)}`);
 
         if (functionResponse.length > 0) {
@@ -77,7 +78,7 @@ function App() {
     <div className="app">
       <h1 className="h1-breeserif">🧳 Carry-on Carlos </h1>
       <img src={CarlosImage} alt="Carry-on Carlos" className="carlos-image"/>
-      <SearchBanner />
+      <SearchBanner setSearchData={setSearchInput} />
       <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} isLoading={isLoading}/>
       {errorMsg && <div className="error">{errorMsg}</div>} 
     </div>
