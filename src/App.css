@@ -123,11 +123,87 @@
 }
 
 .suggestion-item {
-  list-style-type: none; /* Remove bullet points */
+  list-style-type: none;
   padding: 10px;
-  cursor: pointer; /* Make it look clickable */
+  cursor: pointer;
   border: 1px solid #eee;
-  margin-top: -1px; /* This will make them stack nicely */
+  margin-top: -1px;
   background-color: #3d3b3b;
-  transition: background-color 0.2s; /* Smooth transition for hover effect */
+  transition: background-color 0.2s;
 }
+
+.banner {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden; 
+  width: 100%;
+  scrollbar-width: none;
+  align-items: stretch;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.banner::-webkit-scrollbar {
+  display: none;
+}
+
+.travelers-dropdown {
+    display: flex; /* Make this a flex container */
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Horizontally center child elements */
+    width: 200px;
+    margin-right: 10px;
+    margin-top: 2px;
+    box-sizing: border-box;
+    padding: 0;
+    font-size: 14px;
+}
+
+.traveler-control {
+  display: flex; /* Arrange label and buttons in a row */
+  justify-content: space-between; /* Add space between items */
+  width: 100%; /* Take full width */
+  padding: 5px 0; /* Add some vertical padding */
+}
+
+
+.traveler-control label,
+.traveler-control button {
+    margin: 0 5px; /* Add some spacing between text and buttons */
+}
+
+.airport-autocomplete {
+  flex: 0 0 50%;
+  box-sizing: content-box; 
+  padding: 0; 
+  margin-right: 10px; 
+  border: none;
+}
+
+.airport-autocomplete > div > input {
+  font-size: 12px !important;
+}
+
+.airport-autocomplete .suggestion-item {
+  font-size: 12px;
+}
+
+.airport-autocomplete input {
+  font-size: 10px; 
+  padding: 10px; 
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.cabin-class-dropdown {
+  width: 150px; 
+}
+
+.cabin-class-dropdown select {
+  font-size: 12px; 
+  padding: 10px; 
+  width: 150px;
+  box-sizing: border-box;
+}
+
+

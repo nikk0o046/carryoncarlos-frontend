@@ -15,7 +15,7 @@ export default function AirportAutocomplete(props) {
     const [locations, setLocations] = useState([]);
     const [error, setError] = useState(null);
     const [isInputActive, setIsInputActive] = useState(true);
-
+    const [isTravelersPanelOpen, setTravelersPanelOpen] = useState(false);
 
     const handleLocationClick = (location) => {
         setSearchTerm(location.name); // Set the clicked location's name as the searchTerm
