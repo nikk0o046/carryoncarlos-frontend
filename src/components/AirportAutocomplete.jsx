@@ -16,7 +16,7 @@ export default function AirportAutocomplete({ searchTerm, setSearchTerm, setSele
     const [isInputActive, setIsInputActive] = useState(true);
 
     const handleLocationClick = (location) => {
-        setSearchTerm(location.name); // Set the clicked location's name as the searchTerm
+        setSearchTerm(`${location.name}, ${location.country.code}`); // Set the clicked location's name as the searchTerm
         setSelectedCityID(location.id)
         setLocations([]); // Clear the suggestions list after a click
         setIsInputActive(false); // Deactivate the input field
@@ -75,7 +75,7 @@ export default function AirportAutocomplete({ searchTerm, setSearchTerm, setSele
           <ul>
             {isInputActive && locations.map((location) => (
               <li key={location.id} onClick={() => handleLocationClick(location)} className="suggestion-item"> 
-                {location.name}
+                {`${location.name}, ${location.country.code}`}
               </li>
             ))}
           </ul>

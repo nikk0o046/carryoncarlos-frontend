@@ -22,8 +22,8 @@ function SearchBanner({ setSearchData }) {
 
     // Format the airport text to limit its length
     const formattedCity = () => {
-        if (!selectedCityID) return "From: ";
-        return `From: ${selectedCityID.length > 15 ? selectedCityID.substring(0, 15) + "..." : selectedCityID}`;
+        if (!searchTerm) return "From: ";
+        return `From: ${searchTerm.length > 15 ? searchTerm.substring(0, 15) + "..." : searchTerm}`;
     };
     
     // Calculate the total number of travelers

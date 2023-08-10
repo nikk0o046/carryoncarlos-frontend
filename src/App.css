@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
+body, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+}
+
 .h1-breeserif {
   font-family: 'Bree Serif', serif;
   color: rgb(165, 193, 212);
@@ -24,6 +31,9 @@
   justify-content: center;
   padding: 20px;
   font-family: 'Arial', sans-serif;
+  max-width: 800px;  /* Adjust this to your preference */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .app h3 {
@@ -71,9 +81,10 @@
   width: 80%;
   padding: 10px;
   margin-top: 10px;
-  border: none;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0,0,0,.2);
+  background-color: #47535e;
+  color: white;
 }
 
 .send-button {
@@ -184,10 +195,13 @@ dialog {
 }
 
 .airport-input {
+  background-color: #333;
+  color: #ccc;
   font-size: 14px; /* This adjusts the font size. Feel free to tweak the value. */
   width: 100%;     /* This ensures the input box takes the full width of its container. */
   padding: 10px;   /* Adds some padding inside the input for a better visual appeal. */
-  height: 30px;    /* Adjusts the height of the input. Tweak as needed. */
+  height: 35px;    /* Adjusts the height of the input. Tweak as needed. */
+  border-radius: 4px;
 }
 
 
