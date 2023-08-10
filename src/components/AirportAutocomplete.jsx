@@ -64,12 +64,13 @@ export default function AirportAutocomplete({ searchTerm, setSearchTerm, setSele
     return (
         <div>
           <input
+            className="airport-input"
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onFocus={() => setIsInputActive(true)}
             readOnly={!isInputActive} // This will make the input field read-only when not active
-            placeholder="Search for an airport..."
+            placeholder="Search for a city..."
           />
           <ul>
             {isInputActive && locations.map((location) => (

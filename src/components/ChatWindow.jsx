@@ -4,7 +4,7 @@ import Loading from './Loading';
 
 // ChatWindow component receives sendMessageFunction (which sends user's messages to the server) 
 // and messages (the conversation history) as props from its parent (App)
-const ChatWindow = ({ sendMessageFunction, messages, isLoading }) => {
+const ChatWindow = ({ sendMessageFunction, messages, isLoading, canSendMessage }) => {
   const [message, setMessage] = useState('') // The message state variable is used to keep track of the current message being typed by the user
   const messagesEndRef = useRef(null) // useRef is used to create a reference to the div that will be used to auto-scroll the chat window
 
@@ -50,7 +50,7 @@ const ChatWindow = ({ sendMessageFunction, messages, isLoading }) => {
       {isLoading && <Loading />}
       <div className="message-input-area">
         <input type="text" value={message} onChange={handleInputChange} className="chat-input" />
-        <i className="fas fa-paper-plane send-button" onClick={handleSendClick} />
+        {canSendMessage && <i className="fas fa-paper-plane send-button" onClick={handleSendClick} />}
       </div>
     </div>
   )

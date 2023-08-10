@@ -10,9 +10,8 @@ function App() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello there, fellow traveler! This is Carry-on Carlos speaking. I've weathered more baggage carousels and customs checkpoints than you've had hot dinners, so you can trust I'll find the right flights for you! To get us started, please tell me the city you're taking off from and give me a description of where you want to land."
-    }
-  ]);
+      content: "Hello there, fellow traveler! This is Carry-on Carlos speaking. I've weathered more baggage carousels and customs checkpoints than you've had hot dinners, so you can trust I'll find the right flights for you! Before we get started, please select your origin city and the number of travelers using the buttons above. Once that's sorted, describe to me where you want to go."
+  }]);
   const [isLoading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState(null)
   const [searchInput, setSearchInput] = useState({});
@@ -25,6 +24,15 @@ function App() {
     console.log(`Received new message: ${JSON.stringify(newMessage)}`);
     setLoading(true)
     setErrorMsg(null)
+
+   // Add structured data if it's the user's first message
+    if (messages.length === 1) {
+      newMessage.user_inputs = {
+          originCity: searchInput.searchTerm,
+          travelers: searchInput.travelers
+      };
+    }
+
     const updatedMessages = [...messages, newMessage];
     setMessages(updatedMessages);
     console.log(`Sending the following conversation history to the server: ${JSON.stringify(updatedMessages)}`);
@@ -79,7 +87,7 @@ function App() {
       <h1 className="h1-breeserif">🧳 Carry-on Carlos </h1>
       <img src={CarlosImage} alt="Carry-on Carlos" className="carlos-image"/>
       <SearchBanner setSearchData={setSearchInput} />
-      <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} isLoading={isLoading}/>
+      <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} isLoading={isLoading} canSendMessage={Boolean(searchInput.searchTerm)}/>
       {errorMsg && <div className="error">{errorMsg}</div>} 
     </div>
   );

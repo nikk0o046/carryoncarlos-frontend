@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import AirportAutocomplete from './AirportAutocomplete';
 import TravelersDropdown from './TravelersDropdown';
-import CabinClassDropdown from './CabinClassDropdown';
 
 function SearchBanner({ setSearchData }) {
+    const [modalOpen, setModalOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState(''); // From AirportAutocomplete
     const [selectedCityID, setSelectedCityID] = useState(null);
-    const [cabinClass, setCabinClass] = useState('Economy'); // From CabinClassDropdown
     const [travelers, setTravelers] = useState({
         adults: 1,
         children: 0,
@@ -17,24 +16,40 @@ function SearchBanner({ setSearchData }) {
         setSearchData({
             searchTerm,
             selectedCityID,
-            cabinClass,
             travelers
         });
-    }, [searchTerm, selectedCityID, cabinClass, travelers, setSearchData]);
+    }, [searchTerm, selectedCityID, travelers, setSearchData]);
+
+    // Format the airport text to limit its length
+    const formattedCity = () => {
+        if (!selectedCityID) return "From: ";
+        return `From: ${selectedCityID.length > 15 ? selectedCityID.substring(0, 15) + "..." : selectedCityID}`;
+    };
+    
+    // Calculate the total number of travelers
+    const totalTravelers = () => {
+        return travelers.adults + travelers.children + travelers.infants;
+    };
+ 
 
     return (
         <div className="banner">
-            <div className="airport-autocomplete">
-                <AirportAutocomplete searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSelectedCityID={setSelectedCityID} />
-            </div>
-            <div className="travelers-dropdown">
-                <TravelersDropdown travelers={travelers} setTravelers={setTravelers} />
-            </div>
-            <div className="cabin-class-dropdown">
-                <CabinClassDropdown cabinClass={cabinClass} setCabinClass={setCabinClass} />
-            </div>
+           <div>
+              <button onClick={() => setModalOpen(true)}>{formattedCity()}</button>
+           </div>
+           <div>
+              <button onClick={() => setModalOpen(true)}>{totalTravelers()} travelers</button>
+           </div>
+     
+           <dialog open={modalOpen}>
+              <div className="modal-content">
+                 <AirportAutocomplete searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSelectedCityID={setSelectedCityID} />
+                 <TravelersDropdown travelers={travelers} setTravelers={setTravelers} />
+                 <button onClick={() => setModalOpen(false)}>Close</button>
+              </div>
+           </dialog>
         </div>
-    );
+     );     
 }
 
 export default SearchBanner;

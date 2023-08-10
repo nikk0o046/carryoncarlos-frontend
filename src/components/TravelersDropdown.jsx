@@ -18,19 +18,19 @@ function TravelersDropdown({ travelers, setTravelers }) {
                     <div className="traveler-control">
                         <label>Adults</label>
                         <button onClick={() => setTravelers(prev => ({ ...prev, adults: prev.adults - 1 }))} disabled={adults <= 1}>-</button>
-                        {adults}
+                        <span className="traveler-count">{adults}</span>
                         <button onClick={() => setTravelers(prev => ({ ...prev, adults: prev.adults + 1 }))}>+</button>
                     </div>
                     <div className="traveler-control">
                         <label>Children</label>
                         <button onClick={() => setTravelers(prev => ({ ...prev, children: prev.children - 1 }))} disabled={children <= 0}>-</button>
-                        {children}
+                        <span className="traveler-count">{children}</span>
                         <button onClick={() => setTravelers(prev => ({ ...prev, children: prev.children + 1 }))}>+</button>
                     </div>
                     <div className="traveler-control">
                         <label>Infants</label>
                         <button onClick={() => setTravelers(prev => ({ ...prev, infants: prev.infants - 1 }))} disabled={infants <= 0}>-</button>
-                        {infants}
+                        <span className="traveler-count">{infants}</span>
                         <button onClick={() => setTravelers(prev => ({ ...prev, infants: prev.infants + 1 }))}>+</button>
                     </div>
                 </div>
