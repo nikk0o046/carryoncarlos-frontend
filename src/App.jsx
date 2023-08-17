@@ -5,8 +5,10 @@ import ChatWindow from './components/ChatWindow'
 import { sendFlightRequest, handleFunctionCall } from './api/flightBuddyService'
 import CarlosImage from './assets/Carry-on_Carlos.png';
 import SearchBanner from './components/SearchBanner';
+import { v4 as uuidv4 } from 'uuid'; // For user ID
 
 function App() {
+  const [customerId, setCustomerId] = useState(uuidv4()); // Create user ID
   const [messages, setMessages] = useState([
     {
       role: "assistant",
@@ -21,7 +23,7 @@ function App() {
   }, [messages]);
 
   const handleSendMessage = async (newMessage) => {
-    console.log(`Received new message: ${JSON.stringify(newMessage)}`);
+    console.log(`Received new message from the user: ${JSON.stringify(newMessage)}`);
     setLoading(true)
     setErrorMsg(null)
 
@@ -38,7 +40,7 @@ function App() {
     console.log(`Sending the following conversation history to the server: ${JSON.stringify(updatedMessages)}`);
 
     try {
-      const data = await sendFlightRequest(updatedMessages)
+      const data = await sendFlightRequest(updatedMessages, customerId) // Make a request to the backend
       const newAssistantMessage = data.message;
 
       if (newAssistantMessage.function_call) {
@@ -49,7 +51,7 @@ function App() {
         };
         setMessages(oldMessages => [...oldMessages, predefinedMessage])
 
-        const functionResponse = await handleFunctionCall(newAssistantMessage.function_call, searchInput);
+        const functionResponse = await handleFunctionCall(newAssistantMessage.function_call, searchInput, customerId);
         console.log(`Received function response: ${JSON.stringify(functionResponse)}`);
 
         if (functionResponse.length > 0) {
