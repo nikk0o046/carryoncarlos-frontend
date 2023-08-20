@@ -44,4 +44,23 @@ export async function sendFlightRequest(updatedMessages, customerId) {
     const data = await response.json(); 
     return data;
   }
-  
+
+// Send feedback
+export const sendFeedbackToServer = async (feedbackData, customerId) => {
+  console.log("Submitting feedback:", feedbackData);
+
+  const response = await fetch("http://localhost:8081/submit_feedback", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Customer-ID': customerId
+    },
+    body: JSON.stringify(feedbackData)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Error submitting feedback: ${response.statusText}`);
+  }
+
+  return await response.json();
+}

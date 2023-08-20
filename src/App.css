@@ -262,3 +262,29 @@ dialog {
   color: red;
   margin-top: 5px;
 }
+
+/* Add some space between the thumbs and the textarea */
+.thumbs-section {
+  margin-bottom: 10px;
+}
+
+.thumbs-section button {
+  margin-right: 10px;
+}
+
+/* Remove margin for the last button to ensure it doesn't have unnecessary space on its right */
+.thumbs-section button:last-child {
+  margin-right: 0;
+}
+
+/* Add space between the textarea and the submit button */
+.feedback-textarea {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+}
+
+/* Space between ChatWindow and Feedback section */
+.feedback-section {
+  margin-top: 20px;
+}
