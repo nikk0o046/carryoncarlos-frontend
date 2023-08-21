@@ -6,6 +6,7 @@ import { sendFlightRequest, handleFunctionCall, sendFeedbackToServer } from './a
 import CarlosImage from './assets/Carry-on_Carlos.png';
 import SearchBanner from './components/SearchBanner';
 import Feedback from './components/Feedback';
+import MessageInput from './components/MessageInput';
 import { v4 as uuidv4 } from 'uuid'; // For user ID
 
 function App() {
@@ -115,6 +116,7 @@ function App() {
       <img src={CarlosImage} alt="Carry-on Carlos" className="carlos-image"/>
       <SearchBanner setSearchData={setSearchInput} />
       <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} isLoading={isLoading} canSendMessage={Boolean(searchInput.searchTerm)}/>
+      {Boolean(searchInput.searchTerm) && <MessageInput sendMessageFunction={handleSendMessage} />}
       {errorMsg && <div className="error">{errorMsg}</div>}
       {feedbackPrompted && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}
       {feedbackSuccess && <div className="success">Thanks for your feedback!</div>}
