@@ -26,7 +26,7 @@ function App() {
   }, [messages]);
 
   // Collect feedback
-  const [feedbackPrompted, setFeedbackPrompted] = useState(false);
+  const [flightsProvided, setFlightsProvided] = useState(false);
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
   const handleFeedbackSubmit = async (feedbackData) => {
@@ -36,9 +36,6 @@ function App() {
       console.log("Feedback submitted successfully:", response);
       
       setFeedbackSuccess(true);
-      setTimeout(() => {
-        setFeedbackSuccess(false); // Reset after 3 seconds so make the notification dissappear
-      }, 3000);
   
     } catch (error) {
       console.error("Error while submitting feedback:", error);
@@ -94,7 +91,7 @@ function App() {
 
           newAssistantMessage.content = "Alright, mission accomplished! I've wrestled the databases and brought back the best flights just for you. Check them out below. Happy travels!";
           newAssistantMessage.flights = flights;
-          setFeedbackPrompted(true);  // Here we ask for feedback after providing flights
+          setFlightsProvided(true);
 
         } else {
           newAssistantMessage.content = "I'm sorry, but I couldn't find any flights that match your criteria."; 
@@ -116,9 +113,9 @@ function App() {
       <img src={CarlosImage} alt="Carry-on Carlos" className="carlos-image"/>
       <SearchBanner setSearchData={setSearchInput} />
       <ChatWindow sendMessageFunction={handleSendMessage} messages={messages} isLoading={isLoading} canSendMessage={Boolean(searchInput.searchTerm)}/>
-      {Boolean(searchInput.searchTerm) && <MessageInput sendMessageFunction={handleSendMessage} />}
+      {Boolean(searchInput.searchTerm) && !flightsProvided && <MessageInput sendMessageFunction={handleSendMessage} />}
       {errorMsg && <div className="error">{errorMsg}</div>}
-      {feedbackPrompted && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}
+      {flightsProvided && !feedbackSuccess && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}
       {feedbackSuccess && <div className="success">Thanks for your feedback!</div>}
     </div>
   );

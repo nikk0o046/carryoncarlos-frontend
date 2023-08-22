@@ -276,6 +276,12 @@ dialog {
   margin-right: 0;
 }
 
+.active-thumb {
+  background-color: blue;
+  border: none;
+  outline: none;
+}
+
 /* Add space between the textarea and the submit button */
 .feedback-textarea {
   display: block;

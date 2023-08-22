@@ -11,8 +11,19 @@ function Feedback({ onFeedbackSubmit }) {
   return (
     <div className="feedback-section">
         <div className="thumbs-section">
-            <button onClick={() => setThumbs('up')}>👍</button>
-            <button onClick={() => setThumbs('down')}>👎</button>
+            <button 
+                onClick={() => setThumbs('up')} 
+                className={thumbs === 'up' ? "active-thumb" : ""}
+            >
+                👍
+            </button>
+            <button 
+                onClick={() => setThumbs('down')} 
+                className={thumbs === 'down' ? "active-thumb" : ""}
+            >
+                👎
+            </button>
+
         </div>
         <textarea 
             className="feedback-textarea"
