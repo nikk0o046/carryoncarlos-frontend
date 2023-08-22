@@ -101,7 +101,7 @@ function App() {
       setMessages(oldMessages => [...oldMessages, newAssistantMessage])
     } catch (error) {
       console.error("An error occurred:", error);
-      setErrorMsg("Unexpected error. Please try again later.");
+      setErrorMsg(error.message || "Unexpected error. Please try again later.");
     } finally {
       setLoading(false);
     }
