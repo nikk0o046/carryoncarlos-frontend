@@ -1,7 +1,7 @@
 // flightBuddyService.js
 export async function sendFlightRequest(updatedMessages, customerId) {
-    //const response = await fetch('https://chat-backend-image-ou44r5rafq-lz.a.run.app/send_message', {
-      const response = await fetch('http://localhost:8081/send_message', {
+  const response = await fetch('https://chat-backend-image-ou44r5rafq-lz.a.run.app/send_message', {
+  //const response = await fetch('http://localhost:8081/send_message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,8 +27,8 @@ export async function sendFlightRequest(updatedMessages, customerId) {
       user_request: parsedArguments.summary_info
     };
   
-    //const response = await fetch("https://flight-buddy-service-ou44r5rafq-lz.a.run.app/search_flights", {
-      const response = await fetch("http://localhost:8080/search_flights", {
+    const response = await fetch("https://flight-buddy-service-ou44r5rafq-lz.a.run.app/search_flights", {
+    //const response = await fetch("http://localhost:8080/search_flights", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,8 @@ export async function sendFlightRequest(updatedMessages, customerId) {
 export const sendFeedbackToServer = async (feedbackData, customerId) => {
   console.log("Submitting feedback:", feedbackData);
 
-  const response = await fetch("http://localhost:8081/submit_feedback", {
+  const response = await fetch("https://chat-backend-image-ou44r5rafq-lz.a.run.app/submit_feedback", {
+  //const response = await fetch("http://localhost:8081/submit_feedback", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
