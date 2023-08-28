@@ -45,7 +45,7 @@ function SearchBanner({ setSearchData }) {
               <div className="modal-content">
                  <AirportAutocomplete searchTerm={searchTerm} setSearchTerm={setSearchTerm} setSelectedCityID={setSelectedCityID} />
                  <TravelersDropdown travelers={travelers} setTravelers={setTravelers} />
-                 <button onClick={() => setModalOpen(false)}>Close</button>
+                 <button onClick={() => setModalOpen(false)}>Submit</button>
               </div>
            </dialog>
         </div>

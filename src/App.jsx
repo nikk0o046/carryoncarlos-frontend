@@ -15,7 +15,7 @@ function App() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello there, fellow traveler! This is Carry-on Carlos speaking. I've weathered more baggage carousels and customs checkpoints than you've had hot dinners, so you can trust I'll find the right flights for you! Before we get started, please select your origin city and the number of travelers using the buttons above. Once that's sorted, describe to me where you want to go."
+      content: "Hey, traveller! It's Carry-on Carlos. I've zipped through every airport you can name. Need a flight? I've got you covered. Step one: tap the buttons above to set your origin and crew size. Done? Great. So, where are we headed?"
   }]);
   const [isLoading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState(null)
