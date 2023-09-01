@@ -1,5 +1,6 @@
 // App.js
 import React, { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'; // For user ID
 import './App.css'
 import ChatWindow from './components/ChatWindow'
 import { sendFlightRequest, handleFunctionCall, sendFeedbackToServer } from './api/flightBuddyService'
@@ -7,7 +8,7 @@ import CarlosImage from './assets/Carry-on_Carlos.png';
 import SearchBanner from './components/SearchBanner';
 import Feedback from './components/Feedback';
 import MessageInput from './components/MessageInput';
-import { v4 as uuidv4 } from 'uuid'; // For user ID
+import CookieConsentBanner from './components/CookieConsentBanner';
 
 function App() {
   // Define variables and set iniatial states
@@ -117,6 +118,7 @@ function App() {
       {errorMsg && <div className="error">{errorMsg}</div>}
       {flightsProvided && !feedbackSuccess && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}
       {feedbackSuccess && <div className="success">Thanks for your feedback!</div>}
+      <CookieConsentBanner />
     </div>
   );
 }
