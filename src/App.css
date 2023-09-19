@@ -1,15 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
-body, #root {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #333;
-}
-
 .h1-breeserif {
   font-family: 'Bree Serif', serif;
-  color: rgb(165, 193, 212);
+  color: var(--text-color-light);
 }
 
 @media screen and (max-width: 600px) {
@@ -27,8 +20,8 @@ body, #root {
 .app {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 20px;
+  min-height: 100vh;
+  padding: 15px;
   font-family: 'Arial', sans-serif;
   max-width: 800px;  /* Adjust this to your preference */
   margin-left: auto;
@@ -37,7 +30,7 @@ body, #root {
 
 .app h3 {
   text-align: center;
-  color: #666;
+  color: var(--text-color-light);
 }
 
 .error {
@@ -48,57 +41,6 @@ body, #root {
 
 .loading {
   text-align: center;
-}
-
-.chat-messages {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.chat-message {
-  max-width: 70%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.chat-message.assistant {
-  color: #000;
-  background-color: #e6e6e6;
-  align-self: flex-start;
-}
-
-.chat-message.user {
-  background-color: #0084ff;
-  color: white;
-  align-self: flex-end;
-}
-
-.message-input-area input {
-  width: 80%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #47535e;
-  color: white;
-}
-
-.send-button {
-  font-size: 24px;
-  color: #007BFF;
-  cursor: pointer;
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
-.message-input-area {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
 }
 
 .loading {
@@ -121,15 +63,6 @@ body, #root {
   0% { box-shadow: 1.2rem 0 0 #ccc, 2.4rem 0 0 #ccc; }
   50% { box-shadow: 1.2rem 0 0 transparent, 2.4rem 0 0 transparent; }
   100% { box-shadow: 1.2rem 0 0 #ccc, 2.4rem 0 0 #ccc; }
-}
-
-.carlos-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 10px;
 }
 
 .banner {
@@ -158,9 +91,9 @@ dialog {
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 5px;
-  border: 1px solid #0a131c;
+  border: 1px solid var(--main-color);
   padding: 20px;
-  max-width: 80%; /* You can adjust this if necessary */
+  width: 65%;
   z-index: 1000; /* Puts the modal above other elements */
 }
 
@@ -176,7 +109,6 @@ dialog {
 }
 
 /* Updated styles for input and button */
-.airport-autocomplete input, 
 .travelers-dropdown button {
   width: 100%;
   height: 40px;
@@ -184,32 +116,22 @@ dialog {
   font-family: 'Arial', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #333;
-  background-color: #f5f5f5;
-  border: 2px solid #ddd;
+  color: var(--text-color-light);
+  background-color: var(--secondary-color);
   border-radius: 4px;
   cursor: pointer;
   outline: none;
-  transition: background-color 0.2s;
 }
 
 .airport-input {
-  background-color: #333;
-  color: #ccc;
-  font-size: 14px; /* This adjusts the font size. Feel free to tweak the value. */
-  width: 100%;     /* This ensures the input box takes the full width of its container. */
-  padding: 10px;   /* Adds some padding inside the input for a better visual appeal. */
-  height: 35px;    /* Adjusts the height of the input. Tweak as needed. */
+  background-color: var(--input-color);
+  color: var(--text-color-dark);
+  font-size: 14px;
+  width: 100%;
+  padding: 10px;
+  height: 35px;
   border-radius: 4px;
-}
-
-
-/* Hover effect for the button and input */
-.airport-autocomplete input:hover, 
-.airport-autocomplete input:focus,
-.travelers-dropdown button:hover {
-  background-color: #fff;
-  border-color: #007BFF;
+  border: 1px solid var(--main-color);
 }
 
 /* Dropdown styles for the locations and travelers panel */
@@ -218,14 +140,9 @@ dialog {
   font-size: 14px;
   padding: 10px;
   cursor: pointer;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  color: #333; /* Set the color for dropdown items to ensure they are visible against the white background */
-}
-
-.suggestion-item:hover {
-  background-color: #f5f5f5;
+  background-color: var(--input-color);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  color: var(--text-color-dark);
 }
 
 /* Styles for travelers dropdown controls */
@@ -237,14 +154,14 @@ dialog {
 }
 
 .traveler-control button {
-  display: flex;           /* This allows for the justify-content and align-items properties to work */
-  justify-content: center; /* Center horizontally */
-  align-items: center;     /* Center vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #f5f5f5;
-  font-size: 18px; 
+  background-color: var(--secondary-color);
+  font-size: 18px;
 }
 
 .traveler-control label {
@@ -254,6 +171,47 @@ dialog {
 
 .traveler-count {
   margin: 0 5px;
+}
+
+.base-input {
+  background-color: var(--input-color);
+  color: var(--text-color-dark);
+  height: 120px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  
+  /* Remove default appearances for some browsers (e.g., the blue outline) */
+  outline: none;
+  box-shadow: none;
+}
+
+.suggestions button {
+  background-color: var(--secondary-color);
+  color: var(--text-color-light);
+  margin-top: 6px;
+  margin-right: 6px;
+}
+
+.carlos-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  transform: translateX(-10px); /* Shifts 50px to the left */
+}
+
+.search-button {
+  margin-top: auto;
+  background-color: var(--main-color);
+}
+
+.color-rectangle {
+  width: 200px;      /* width of the rectangle */
+  height: 100px;     /* height of the rectangle */
+  background-color: var(--carlos-color);  /* placeholder color */
+  margin-top: 20px;  /* optional margin for spacing */
 }
 
 /* Error message styling from AirportAutocomplete */
@@ -293,3 +251,4 @@ dialog {
 .feedback-section {
   margin-top: 20px;
 }
+

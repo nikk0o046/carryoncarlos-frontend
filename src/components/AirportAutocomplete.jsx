@@ -70,7 +70,7 @@ export default function AirportAutocomplete({ searchTerm, setSearchTerm, setSele
             onChange={(e) => setSearchTerm(e.target.value)}
             onFocus={() => setIsInputActive(true)}
             readOnly={!isInputActive} // This will make the input field read-only when not active
-            placeholder="Search for a city..."
+            placeholder="Search for a departure city..."
           />
           <ul>
             {isInputActive && locations.map((location) => (

@@ -14,6 +14,39 @@
   -webkit-text-size-adjust: 100%;
 }
 
+
+:root {
+  --main-color: #354f52;
+  --secondary-color: #52796f;
+  --input-color: #cad2c5;
+  --background-color: #84a98c;
+  --text-color-light: #eaeaea;
+  --text-color-dim: #95a095;
+  --text-color-dark: #819784;
+  --carlos-color: #432818;
+}
+
+
+/*
+:root {
+  --main-color: #16425b;
+  --secondary-color: #3a7ca5;
+  --input-color: #ffffff;
+  --background-color: #e9fff9;
+  --text-color-light: #eaeaea;
+  --text-color-dim: #586f7c;
+  --text-color-dark: #0a1128;
+  --carlos-color: #432818;
+}
+*/
+
+body, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -38,13 +71,13 @@ h1 {
 
 button {
   border-radius: 8px;
-  color: rgb(0, 0, 0);
+  color: var(--text-color-light);
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #e3e3e3;
+  background-color: var(--main-color);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -54,4 +87,28 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* For Chrome, Firefox, and newer versions of Safari */
+input::placeholder, textarea::placeholder {
+  color: var(--text-color-dim);
+  opacity: 1;
+}
+
+/* For older versions of Safari */
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: var(--text-color-dim);
+  opacity: 1;
+}
+
+/* For Internet Explorer */
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: var(--text-color-dim);
+  opacity: 1;
+}
+
+/* For Microsoft Edge */
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+  color: var(--text-color-dim);
+  opacity: 1;
 }
