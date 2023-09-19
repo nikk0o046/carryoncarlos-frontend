@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import CarlosImage from './assets/Carry-on_Carlos.png';
 import CarlosMexicanImage from './assets/mexican_carlos_v6.png';
 import SearchBanner from './components/SearchBanner';
 import FlightQueryInput from './components/FlightQueryInput';
