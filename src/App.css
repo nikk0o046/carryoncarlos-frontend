@@ -207,13 +207,6 @@ dialog {
   background-color: var(--main-color);
 }
 
-.color-rectangle {
-  width: 200px;      /* width of the rectangle */
-  height: 100px;     /* height of the rectangle */
-  background-color: var(--carlos-color);  /* placeholder color */
-  margin-top: 20px;  /* optional margin for spacing */
-}
-
 /* Error message styling from AirportAutocomplete */
 .error-message {
   color: red;

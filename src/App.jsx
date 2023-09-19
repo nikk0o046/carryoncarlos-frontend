@@ -31,22 +31,34 @@ function App() {
       }, 5000);
     }
 
+
+     // Collect feedback
+    const handleFeedbackSubmit = async (feedbackData) => {
+    
+        try {
+        const response = await sendFeedbackToServer(feedbackData, customerId);
+        console.log("Feedback submitted successfully:", response);
+        
+        setFeedbackSuccess(true);
+    
+        } catch (error) {
+        console.error("Error while submitting feedback:", error);
+        }
+    }
+
     return (
         <div className="app">
-            {/* <h1 className="h1-breeserif">🧳 Carry-on Carlos </h1>
-            <img src={CarlosImage} alt="Carry-on Carlos" className="carlos-image"/> */}
             <SearchBanner setSearchData={setSearchInput} />
             <FlightQueryInput textValue={flightQuery} onChange={setFlightQuery} />
             <Suggestions onClick={handleSuggestionClick} />
-            {/*<div className="color-rectangle"></div>*/}
             <img src={CarlosMexicanImage} alt="Carry-on Carlos" className="carlos-image"/>
             <button className="search-button" onClick={handleSearch}>Search</button>
-
 
             {hasSubmitted && isLoading && <p>Loading...</p>}
             {hasSubmitted && !isLoading && flightsProvided && <p>Show flights here...</p>}
             {hasSubmitted && !isLoading && !flightsProvided && <p>No flights found.</p>}
-            {flightsProvided && !feedbackSuccess && <Feedback onFeedbackSubmit={(feedback) => console.log("Received feedback:", feedback)} />}
+
+            {flightsProvided && !feedbackSuccess && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}
             {feedbackSuccess && <div className="success">Thanks for your feedback!</div>}
             <CookieConsentBanner />
         </div>
