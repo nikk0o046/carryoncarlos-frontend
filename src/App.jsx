@@ -51,6 +51,7 @@ function App() {
             <SearchBanner setSearchData={setSearchInput} />
             <FlightQueryInput textValue={flightQuery} onChange={setFlightQuery} />
             <Suggestions onClick={handleSuggestionClick} />
+            {/*<button className="search-button-2" onClick={handleSearch}>Search Again</button>*/}
             <img src={CarlosMexicanImage} alt="Carry-on Carlos" className="carlos-image"/>
             <button className="search-button" onClick={handleSearch}>Search</button>
 
@@ -58,8 +59,10 @@ function App() {
             {hasSubmitted && !isLoading && flightsProvided && <p>Show flights here...</p>}
             {hasSubmitted && !isLoading && !flightsProvided && <p>No flights found.</p>}
 
+            {/*
             {flightsProvided && !feedbackSuccess && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}
             {feedbackSuccess && <div className="success">Thanks for your feedback!</div>}
+            */}
             <CookieConsentBanner />
         </div>
     );
