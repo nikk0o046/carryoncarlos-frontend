@@ -212,6 +212,20 @@ dialog {
   background-color: var(--main-color);
 }
 
+.chat-window {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 100%; /* Adjust as needed. */
+  margin: 0 auto; /* This centers the chat window horizontally. */
+  margin-top: 10px;
+}
+
+.chat-message {
+  color: var(--text-color-light);
+  background-color: var(--secondary-color);
+}
+
 /* Error message styling from AirportAutocomplete */
 .error-message {
   color: red;

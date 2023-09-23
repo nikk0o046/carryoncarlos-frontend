@@ -62,12 +62,13 @@ function App() {
 
             if (flightData.length > 0) {
                 // if flights were found, map each flight to an object with formatted data
+                const totalTravelers = searchInput.travelers.adults + searchInput.travelers.children + searchInput.travelers.infants;
                 const flights = flightData.map(flight => {
                   return {
                     flight_number: flight.flight_number,
                     from: flight.from,
                     to: flight.to,
-                    cost: `${flight.price.value} ${flight.price.currency}`,
+                    cost: `${Math.round(flight.price.value / totalTravelers)} ${flight.price.currency}`,
                     average_duration: `${flight.average_duration.hours} hours and ${flight.average_duration.minutes} minutes`,
                     booking_link: flight.booking_link,
                   };
@@ -79,7 +80,7 @@ function App() {
                     flights: flights
                 };
     
-                setMessages(prevMessages => [...prevMessages, newAssistantMessage]);
+                setMessages([newAssistantMessage]);
                 console.log("Updated messages state:", messages);
 
                 setFlightsProvided(true);
@@ -88,7 +89,7 @@ function App() {
                     role: 'assistant',
                     content: "Sorry, no flights found."
                 };
-                setMessages(prevMessages => [...prevMessages, noFlightsMessage]);
+                setMessages([noFlightsMessage]);
                 console.log("Updated messages state:", messages);
 
                 setFlightsProvided(false);
@@ -99,7 +100,7 @@ function App() {
                 role: 'assistant',
                 content: 'Oops, something went wrong. Please try again.'
             };
-            setMessages(prevMessages => [...prevMessages, errorMessage]);
+            setMessages([errorMessage]);
             console.log("Updated messages state:", messages);
 
         } finally {
@@ -130,7 +131,7 @@ function App() {
             <img src={CarlosMexicanImage} alt="Carry-on Carlos" className="carlos-image"/>
             <button className="search-button" onClick={handleSearch}>Search</button>
 
-            <ChatWindow messages={messages} isLoading={isLoading} />
+            {hasSubmitted && <ChatWindow messages={messages} isLoading={isLoading} />}
 
             {/*
             {flightsProvided && !feedbackSuccess && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}

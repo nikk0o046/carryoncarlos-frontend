@@ -20,7 +20,7 @@ const ChatWindow = ({ messages, isLoading }) => {
             {message.role === 'assistant' && message.flights && message.flights.map((flight, idx) => (
               <div key={idx}>
                 <br/>
-                <span>Flight from {flight.from} to {flight.to} costs {flight.cost} with an average duration of {flight.average_duration}. </span>
+                <span>Flight from {flight.from} to {flight.to} costs {flight.cost} per person with an average duration of {flight.average_duration}. </span>
                 <a href={flight.booking_link} target="_blank" rel="noopener noreferrer">Book here</a>
               </div>
             ))}
