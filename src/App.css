@@ -87,13 +87,12 @@ button:hover {
 dialog {
   position: fixed;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid var(--main-color);
   padding: 20px;
   width: 65%;
+  max-width: 400px;
   z-index: 1000; /* Puts the modal above other elements */
 }
 
@@ -224,6 +223,7 @@ dialog {
 .chat-message {
   color: var(--text-color-light);
   background-color: var(--secondary-color);
+  width: 100%;
 }
 
 /* Error message styling from AirportAutocomplete */
