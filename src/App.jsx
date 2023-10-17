@@ -5,7 +5,6 @@ import SearchBanner from './components/SearchBanner';
 import FlightQueryInput from './components/FlightQueryInput';
 import Suggestions from './components/Suggestions';
 import ChatWindow from './components/ChatWindow';
-import Feedback from './components/Feedback';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -108,35 +107,15 @@ function App() {
         }
     }
 
-     // Collect feedback
-    const handleFeedbackSubmit = async (feedbackData) => {
-    
-        try {
-        const response = await sendFeedbackToServer(feedbackData, customerId);
-        console.log("Feedback submitted successfully:", response);
-        
-        setFeedbackSuccess(true);
-    
-        } catch (error) {
-        console.error("Error while submitting feedback:", error);
-        }
-    }
-
     return (
         <div className="app">
             <SearchBanner setSearchData={setSearchInput} />
             <FlightQueryInput textValue={flightQuery} onChange={setFlightQuery} />
             <Suggestions onClick={handleSuggestionClick} />
             {/*<button className="search-button-2" onClick={handleSearch}>Search Again</button>*/}
-            <img src={CarlosMexicanImage} alt="Carry-on Carlos" className="carlos-image"/>
+            <img src={CarlosMexicanImage} alt="Illustration of Carry-on Carlos, the mascot" className="carlos-image"/>
             <button className="search-button" onClick={handleSearch}>Search</button>
-
             {hasSubmitted && <ChatWindow messages={messages} isLoading={isLoading} />}
-
-            {/*
-            {flightsProvided && !feedbackSuccess && <Feedback onFeedbackSubmit={handleFeedbackSubmit} />}
-            {feedbackSuccess && <div className="success">Thanks for your feedback!</div>}
-            */}
             <CookieConsentBanner />
         </div>
     );

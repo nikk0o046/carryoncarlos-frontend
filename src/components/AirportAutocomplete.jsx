@@ -32,7 +32,7 @@ export default function AirportAutocomplete({ searchTerm, setSearchTerm, setSele
 
     const fetchResultsFromKiwi = debounce((term) => {
         const apiURL = 'https://api.tequila.kiwi.com/locations/query';
-        const apiKey = 's5Li5-KCv7u4kowJNya1dR011u5gL_Ej'; // Note: Ideally, this should be handled server-side
+        const apiKey = import.meta.env.VITE_KIWI_API_KEY; // Note: Ideally, this should be handled server-side. For this project, I have not done it for latency and cost reasons.
         const params = new URLSearchParams({
             term: term,
             locale: 'en-US',
