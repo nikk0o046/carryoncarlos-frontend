@@ -14,7 +14,6 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
 :root {
   --main-color: #354f52;
   --secondary-color: #52796f;
@@ -24,19 +23,6 @@
   --text-color-dim: #95a095;
   --text-color-dark: #29362a;
 }
-
-
-/*
-:root {
-  --main-color: #16425b;
-  --secondary-color: #3a7ca5;
-  --input-color: #ffffff;
-  --background-color: #e9fff9;
-  --text-color-light: #eaeaea;
-  --text-color-dim: #586f7c;
-  --text-color-dark: #0a1128;
-}
-*/
 
 body, #root {
   width: 100%;
