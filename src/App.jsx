@@ -15,7 +15,6 @@ function App() {
     const [isLoading, setLoading] = useState(false);
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [flightsProvided, setFlightsProvided] = useState(false);
-    const [feedbackSuccess, setFeedbackSuccess] = useState(false);
     const [customerId, setCustomerId] = useState(uuidv4()); // Set customer ID
 
 
