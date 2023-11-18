@@ -4,7 +4,6 @@ const suggestions = [
     "Direct flights.",
     "Max 1 layover.",
     "Staying 2-3 nights.",
-    "Departure 14th of November.",
     "Outbound flight departing after 4pm."
 ];
 
