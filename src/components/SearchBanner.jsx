@@ -14,8 +14,7 @@ function SearchBanner({ setSearchData }) {
 
     useEffect(() => {
         setSearchData({
-            searchTerm,
-            selectedCityID,
+            selected_city_id: selectedCityID,
             travelers
         });
     }, [searchTerm, selectedCityID, travelers, setSearchData]);

@@ -7,6 +7,7 @@ import Suggestions from './components/Suggestions';
 import ChatWindow from './components/ChatWindow';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import { v4 as uuidv4 } from 'uuid';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
     const [flightQuery, setFlightQuery] = useState('');
@@ -42,7 +43,7 @@ function App() {
         console.log("Sending to backend:", requestBody);
     
         try {
-            const data = await fetch("https://flight-buddy-service-ou44r5rafq-lz.a.run.app/search_flights", {
+            const data = await fetch(`${API_BASE_URL}/search_flights`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
