@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import CarlosMexicanImage from './assets/mexican_carlos_v6.png';
 import SearchBanner from './components/SearchBanner';
@@ -7,6 +7,7 @@ import Suggestions from './components/Suggestions';
 import ChatWindow from './components/ChatWindow';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import { v4 as uuidv4 } from 'uuid';
+import { wakeUpServer } from './api/flightBuddyService';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
     const [flightsProvided, setFlightsProvided] = useState(false);
     const [customerId, setCustomerId] = useState(uuidv4()); // Set customer ID
 
+    useEffect(() => {
+        wakeUpServer();
+    }, []);
 
     const handleSuggestionClick = (suggestion) => {
         setFlightQuery(prevQuery => prevQuery + ' ' + suggestion);

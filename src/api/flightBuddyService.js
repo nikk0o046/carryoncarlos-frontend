@@ -1,5 +1,16 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+export async function wakeUpServer() {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+    await fetch(`${API_BASE_URL}/health_check`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+  } catch {
+    // Silently ignore — this is just a warm-up call
+  }
+}
+
 export async function handleFunctionCall(functionCall, searchInput, customerId) {
   const { arguments: functionArguments } = functionCall;
   const parsedArguments = JSON.parse(functionArguments);
