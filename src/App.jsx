@@ -117,8 +117,10 @@ function App() {
             <FlightQueryInput textValue={flightQuery} onChange={setFlightQuery} />
             <Suggestions onClick={handleSuggestionClick} />
             {/*<button className="search-button-2" onClick={handleSearch}>Search Again</button>*/}
-            <img src={CarlosMexicanImage} alt="Illustration of Carry-on Carlos, the mascot" className="carlos-image"/>
-            <button className="search-button" onClick={handleSearch}>Search</button>
+            <div className="search-section">
+                <img src={CarlosMexicanImage} alt="Illustration of Carry-on Carlos, the mascot" className="carlos-image"/>
+                <button className="search-button" onClick={handleSearch}>Search</button>
+            </div>
             {hasSubmitted && <ChatWindow messages={messages} isLoading={isLoading} />}
             <CookieConsentBanner />
         </div>

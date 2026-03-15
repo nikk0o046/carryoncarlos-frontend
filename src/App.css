@@ -20,7 +20,7 @@
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100dvh;
   padding: 15px;
   font-family: 'Arial', sans-serif;
   max-width: 800px;  /* Adjust this to your preference */
@@ -191,18 +191,30 @@ dialog {
   margin-right: 6px;
 }
 
+.search-section {
+  flex: 1 1 0;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
 .carlos-image {
   max-width: 100%;
-  height: auto;
+  flex: 1 1 0;
+  min-height: 0;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
+  margin-top: 10px;
   transform: translateX(-10px); /* Shifts 50px to the left */
+  object-fit: contain;
 }
 
 .search-button {
-  margin-top: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+  width: 100%;
   background-color: var(--main-color);
 }
 
